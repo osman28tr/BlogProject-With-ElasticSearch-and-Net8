@@ -49,3 +49,16 @@ Kibana:
 <img src="ElasticSearch.Web/wwwroot/images/screenshot9.PNG">
 </li>
 </ul>
+
+<h3>4. Kurulum</h3>
+<ul>
+<li>
+    Visual studio'da üst sekmeden View -> Terminal kısmına tıklayınız.
+</li>
+<li>
+    Ardından açılan pencereden "docker-compose up" komutunu giriniz. Bu komut ile projemizde yer alan dockercompose dosyası ve içerisinde yer alan konfigürasyonlar ile beraber elasticsearch ve kibana için gerekli imajlar bilgisayarımızda yoksa dockerhub'dan çekilecek ve bu imajlardan belirtilen portlarda containerlar ayağa kalkacaktır.
+</li>
+<li>
+    Son olarak "ElasticSearch.Web" projemize sağ tıklayıp "Set as startup project" deyiniz ve start butonundan projeyi ayağa kaldırınız.
+</li>
+</ul>
