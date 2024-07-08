@@ -1,4 +1,5 @@
-﻿using ElasticSearch.Web.Services;
+﻿using ElasticSearch.Web.Models;
+using ElasticSearch.Web.Services;
 using ElasticSearch.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,6 +13,17 @@ namespace ElasticSearch.Web.Controllers
             _blogService = blogService;
         }
 
+        [HttpGet]
+        public IActionResult Search()
+        {
+            return View(new List<Blog>());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Search(string searchText)
+        {
+            var blogs = await _blogService.SearchAsync(searchText);
+            return View(blogs);
+        }
         public IActionResult Save()
         {
             return View();
