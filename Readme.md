@@ -28,19 +28,22 @@ Kibana:
 </li>
 <b>Dönen sonuç</b>
 <li>
-<img src="ElasticSearch.Web/wwwroot/images/screenshot5.2.PNG">
-<b>Version:</b> ilgili data’nın kaçıncı versiyonda olduğunu belirtir. Data, her güncellendiğinde bu sayı birer artar.<br>
-<b>seq_no:</b> ilgili data üzerinde gerçekleşen tüm crud işlemlerini belirtir.<br>
+<img src="ElasticSearch.Web/wwwroot/images/screenshot5.2.PNG"><br>
+<b>_version:</b> ilgili data’nın kaçıncı versiyonda olduğunu belirtir. Data, her güncellendiğinde bu sayı birer artar.<br>
+<b>_seq_no:</b> ilgili data üzerinde gerçekleşen tüm crud işlemlerini belirtir.<br>
 <b>_source:</b> data’nın asıl gövdesinin olduğu kısım. Ancak burada id olmadığına dikkat et. id, _doc ile beraber gelir.
 </li>
+<br>
 <b>Post ile veri ekleme</b>
 <li>
 <img src="ElasticSearch.Web/wwwroot/images/screenshot7.PNG">
 </li>
+<br>
 <b>Put ile veri güncelleme</b>
 <li>
 <img src="ElasticSearch.Web/wwwroot/images/screenshot8.PNG">
 </li>
+<br>
 <b>Delete ile veri silme</b>
 <li>
 <img src="ElasticSearch.Web/wwwroot/images/screenshot9.PNG">
