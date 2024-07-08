@@ -18,7 +18,7 @@ namespace ElasticSearch.Web.Services
             {
                 Title = newBlog.Title,
                 Content = newBlog.Content,
-                Tags = newBlog.Tags.ToArray(),
+                Tags = newBlog.Tags.Split(","),
                 UserId = Guid.NewGuid()
             };
             var isCreatedBlog = await _blogRepository.SaveAsync(blog);

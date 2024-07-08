@@ -5,11 +5,12 @@ namespace ElasticSearch.Web.ViewModels
 {
     public class CreatedBlogViewModel
     {
+        [Display(Name = "Blog Title")]
         [Required]
         public string Title { get; set; } = null!;
+        [Display(Name = "Blog Content")]
         [Required]
         public string Content { get; set; } = null!;
-
-        public List<string> Tags { get; set; } = new();
+        [Display(Name = "Blog Tags")] public string Tags { get; set; } = null!;
     }
 }
