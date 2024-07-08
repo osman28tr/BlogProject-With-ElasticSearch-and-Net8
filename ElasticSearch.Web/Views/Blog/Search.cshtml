@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Search";
 }
-@model List<Blog>
+@model List<BlogViewModel>
 <div class="container">
     <div class="col-md-10 offset-1">
         <form asp-action="Search">
@@ -38,7 +38,7 @@
                             <td>@blog.UserId</td>
                             <td>@blog.Title</td>
                             <td>@blog.Content</td>
-                            <td>@String.Join(",", blog.Tags)</td>
+                            <td>@blog.Tags</td>
                             <td>@blog.Created</td>
                         </tr>
                     }
