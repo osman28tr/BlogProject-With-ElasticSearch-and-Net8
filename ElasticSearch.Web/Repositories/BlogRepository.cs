@@ -1,4 +1,5 @@
 ﻿using Elastic.Clients.Elasticsearch;
+using Elastic.Clients.Elasticsearch.QueryDsl;
 using ElasticSearch.Web.Models;
 
 namespace ElasticSearch.Web.Repositories
@@ -23,22 +24,45 @@ namespace ElasticSearch.Web.Repositories
 
         public async Task<List<Blog>> SearchAsync(string searchText)
         {
-            //title and content search
-            var searchResponse = await _elasticsearchClient.SearchAsync<Blog>(s => s
-                .Index(indexName)
-                .Size(1000)
-                .Query(q => q
-                    .Bool(b =>
-                        b.Should(
-                            s => s.Match(m => m.Field(f => f.Content)
-                                .Query(searchText)), //or
-                            s => s.MatchBoolPrefix(p => p.Field(f => f.Title)
-                                .Query(searchText))
-                        ))
-                )
-            );
-            foreach (var hit in searchResponse.Hits) hit.Source.Id = hit.Id;
-            return searchResponse.Documents.ToList();
+            List<Action<QueryDescriptor<Blog>>> ListQuery = new();
+
+
+            Action<QueryDescriptor<Blog>> matchAll = (q) => q.MatchAll(configure => configure.QueryName(""));
+
+            Action<QueryDescriptor<Blog>> matchContent = (q) => q.Match(m => m
+                .Field(f => f.Content)
+                .Query(searchText));
+
+
+            Action<QueryDescriptor<Blog>> titleMatchBoolPrefix = (q) => q.MatchBoolPrefix(m => m
+                .Field(f => f.Content)
+                .Query(searchText));
+
+
+            Action<QueryDescriptor<Blog>> tagTerm = (q) => q.Term(t => t.Field(f => f.Tags).Value(searchText));
+
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                ListQuery.Add(matchAll);
+            }
+
+            else
+            {
+
+                ListQuery.Add(matchContent);
+                ListQuery.Add(matchContent);
+                ListQuery.Add(tagTerm);
+            }
+
+
+            var result = await _elasticsearchClient.SearchAsync<Blog>(s => s.Index(indexName)
+                .Size(1000).Query(q => q
+                    .Bool(b => b
+                        .Should(ListQuery.ToArray()))));
+
+            foreach (var hit in result.Hits) hit.Source.Id = hit.Id;
+            return result.Documents.ToList();
         }
     }
 }

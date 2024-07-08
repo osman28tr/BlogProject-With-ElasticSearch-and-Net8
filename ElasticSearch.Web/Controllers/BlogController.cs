@@ -14,15 +14,15 @@ namespace ElasticSearch.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search()
+        public async Task<IActionResult> Search()
         {
-            return View(new List<Blog>());
+            return View(await _blogService.SearchAsync(string.Empty));
         }
         [HttpPost]
         public async Task<IActionResult> Search(string searchText)
         {
-            var blogs = await _blogService.SearchAsync(searchText);
-            return View(blogs);
+            ViewBag.searchText = searchText;
+            return View(await _blogService.SearchAsync(searchText));
         }
         public IActionResult Save()
         {
