@@ -31,7 +31,7 @@ Kibana:
 <img src="ElasticSearch.Web/wwwroot/images/screenshot5.2.PNG"><br>
 <b>_version:</b> ilgili data’nın kaçıncı versiyonda olduğunu belirtir. Data, her güncellendiğinde bu sayı birer artar.<br>
 <b>_seq_no:</b> ilgili data üzerinde gerçekleşen tüm crud işlemlerini belirtir.<br>
-<b>_source:</b> data’nın asıl gövdesinin olduğu kısım. Ancak burada id olmadığına dikkat et. id, _doc ile beraber gelir.
+<b>_source:</b> data’nın asıl gövdesinin olduğu kısım. Ancak burada id olmadığına dikkat ediniz. id, _doc ile beraber gelir.
 </li>
 <br>
 <b>Post ile veri ekleme</b>
