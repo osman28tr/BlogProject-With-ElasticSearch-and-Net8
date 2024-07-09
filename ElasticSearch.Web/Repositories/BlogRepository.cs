@@ -27,7 +27,7 @@ namespace ElasticSearch.Web.Repositories
             List<Action<QueryDescriptor<Blog>>> ListQuery = new();
 
 
-            Action<QueryDescriptor<Blog>> matchAll = (q) => q.MatchAll(configure => configure.QueryName(""));
+            Action<QueryDescriptor<Blog>> matchAll = (q) => q.MatchAll();
 
             Action<QueryDescriptor<Blog>> matchContent = (q) => q.Match(m => m
                 .Field(f => f.Content)
